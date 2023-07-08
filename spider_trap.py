@@ -17,7 +17,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(wp.generate_html().encode())
 
 
-def main():
+def main() -> None:
     server = HTTPServer((Core.settings.Settings.HOST, Core.settings.Settings.PORT), Handler)
     server.serve_forever()
 
