@@ -1,3 +1,5 @@
+import socket
+import sys
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import Core.path_handler
 import Core.webpage
@@ -18,7 +20,12 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main() -> None:
-    server = HTTPServer((Core.settings.Settings.HOST, Core.settings.Settings.PORT), Handler)
+    try:
+        server = HTTPServer((Core.settings.Settings.HOST, Core.settings.Settings.PORT), Handler)
+    except socket.gaierror:
+        print(f"[!] If testing locally, update your hosts file ({Core.settings.Settings.HOST}).")
+        sys.exit(1)
+
     server.serve_forever()
 
 

@@ -1,6 +1,7 @@
 import Core.settings
 import Core.path_handler
 
+
 class WebPage:
     def __init__(self) -> None:
         ph = Core.path_handler.PathHandler()
